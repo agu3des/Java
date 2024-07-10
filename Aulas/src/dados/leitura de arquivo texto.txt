@@ -1,0 +1,15 @@
+		// abrir arquivo palavras.txt da pasta interna "/dados" para leitura
+		InputStream stream = this.getClass().getResourceAsStream("/dados/palavras.txt");
+		if (stream == null)
+			throw new Exception("Arquivo de palavras inexistente");
+		Scanner arquivo = new Scanner(stream);
+
+		// leitura das linhas do arquivo para as respectivas listas
+		String linha;
+		while (arquivo.hasNext()) {
+			linha = arquivo.nextLine().toUpperCase();
+			//System.out.println(linha);
+			this.palavrasIngles.add(linha.split(";")[0]);
+			this.palavrasPortugues.add(linha.split(";")[1]);
+		}
+		arquivo.close();
