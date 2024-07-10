@@ -1,3 +1,0 @@
-table;tabela
-table;mesa
-home;casa
