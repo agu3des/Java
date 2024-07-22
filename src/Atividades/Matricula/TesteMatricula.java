@@ -1,4 +1,4 @@
-package Matricula;
+package Atividades.Matricula;
 
 public class TesteMatricula {
     public static void main(String[] args) {

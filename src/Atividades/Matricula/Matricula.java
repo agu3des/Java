@@ -1,4 +1,4 @@
-package Matricula;
+package Atividades.Matricula;
 
 public class Matricula {
     private String matricula;
