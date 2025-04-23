@@ -1,0 +1,4 @@
+14:47:57,067  INFO Util:43 - Util.conectar - lendo arquivo util.properties: 
+14:47:57,075  INFO Util:49 - Util.conectar - banco => agenda
+14:47:57,075  INFO Util:50 - Util.conectar - ip => localhost
+14:47:58,675  INFO Util:58 - Util.conectar - criou manager

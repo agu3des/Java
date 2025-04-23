@@ -1,0 +1,32 @@
+20:47:16,046 DEBUG logging:38 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+20:47:16,286  WARN PersistenceXmlParser:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [hibernate-postgresql]; persistence-unit names must be unique
+20:47:16,287  WARN PersistenceXmlParser:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [hibernate-mysql]; persistence-unit names must be unique
+20:47:16,300  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+20:47:16,450  INFO Version:44 - HHH000412: Hibernate ORM core version 6.6.5.Final
+20:47:16,530 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+20:47:16,532  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+20:47:16,969  WARN pooling:86 - HHH10001002: Using built-in connection pool (not intended for production use)
+20:47:17,692  INFO pooling:157 - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/escola]
+	Database driver: org.postgresql.Driver
+	Database version: 16.1
+	Autocommit mode: false
+	Isolation level: undefined/unknown
+	Minimum pool size: 1
+	Maximum pool size: 20
+20:47:20,067  INFO JtaPlatformInitiator:59 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+20:47:20,107  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@31acfd4e] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+20:47:21,335 DEBUG SQL:135 - select a1_0.matricula,a1_0.dtcadastro,a1_0.media,a1_0.nome,a1_0.turma_id from Aluno a1_0 join Turma t1_0 on t1_0.id=a1_0.turma_id where t1_0.periodo='2023-1'
+20:47:21,394 DEBUG SQL:135 - select t1_0.id,t1_0.periodo from Turma t1_0 where t1_0.id=?
+20:47:21,396 TRACE bind:24 - binding parameter (1:INTEGER) <- [1]
+20:47:21,455 DEBUG SQL:135 - select a1_0.matricula,a1_0.dtcadastro,a1_0.media,a1_0.nome,a1_0.turma_id from Aluno a1_0 where a1_0.turma_id is null
+20:47:21,540 DEBUG SQL:135 - select t1_0.id,t1_0.periodo from Turma t1_0 join Aluno a1_0 on t1_0.id=a1_0.turma_id where a1_0.media=10
+20:47:21,549 DEBUG SQL:135 - select a1_0.turma_id,a1_0.matricula,a1_0.dtcadastro,a1_0.media,a1_0.nome from Aluno a1_0 where a1_0.turma_id=?
+20:47:21,550 TRACE bind:24 - binding parameter (1:INTEGER) <- [3]
+20:47:21,566 DEBUG SQL:135 - select t1_0.id,t1_0.periodo from Turma t1_0 join Aluno a1_0 on t1_0.id=a1_0.turma_id where a1_0.matricula='20211370002'
+20:47:21,570 DEBUG SQL:135 - select a1_0.turma_id,a1_0.matricula,a1_0.dtcadastro,a1_0.media,a1_0.nome from Aluno a1_0 where a1_0.turma_id=?
+20:47:21,570 TRACE bind:24 - binding parameter (1:INTEGER) <- [1]
+20:47:21,772 DEBUG SQL:135 - select t1_0.id,t1_0.periodo from Turma t1_0 where (select count(*) from Aluno a1_0 where t1_0.id=a1_0.turma_id)=2
+20:47:21,788 DEBUG SQL:135 - select t1_0.id,t1_0.periodo from Turma t1_0 where not exists(select 1 from Aluno a1_0 where t1_0.id=a1_0.turma_id)
+20:47:21,792 DEBUG SQL:135 - select a1_0.turma_id,a1_0.matricula,a1_0.dtcadastro,a1_0.media,a1_0.nome from Aluno a1_0 where a1_0.turma_id=?
+20:47:21,792 TRACE bind:24 - binding parameter (1:INTEGER) <- [2]
