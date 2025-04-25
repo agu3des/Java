@@ -1,6 +1,6 @@
 //********** import para executar o código conforme modificações da lista01.2.1-GRASP-refactoring
 
-//********** import para executar o código conforme modificações da lista01.2.2-GRASP-refactoring
+//********** import para executar o código conforme modificações da lista01.2.2-GRASP-refactoring'
 //import refactoring1.Cliente;
 //************************************************************************************************
 //********** import para executar o código conforme modificações da lista01.2.3-GRASP-refactoring
