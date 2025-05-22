@@ -18,8 +18,8 @@ public class Locadora {
 
 		c1.adicionaAluguel(new Aluguel(new DVD("O Atirador", DVD.NORMAL), 10));
 		c1.adicionaAluguel(new Aluguel(new DVD("Luca", DVD.INFANTIL), 2));
-		c1.adicionaAluguel(new Aluguel(new DVD("O Gato de Botas 2", DVD.LANÇAMENTO), 30));
-		c1.adicionaAluguel(new Aluguel(new DVD("Arremessando Alto", DVD.LANÇAMENTO), 4));
+		c1.adicionaAluguel(new Aluguel(new DVD("O Gato de Botas 2", DVD.LANCAMENTO), 30));
+		c1.adicionaAluguel(new Aluguel(new DVD("Arremessando Alto", DVD.LANCAMENTO), 4));
 		c1.adicionaAluguel(new Aluguel(new DVD("Moana", DVD.INFANTIL), 10));
 		c1.adicionaAluguel(new Aluguel(new DVD("Uma Noite no Museu", DVD.NORMAL), 3));
 

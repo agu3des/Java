@@ -1,51 +1,28 @@
 package locadora;
 
 public class Aluguel {
-    private DVD dvd;
-    private int diasAlugado;
+    private Alugavel itemAlugado;
+    private int diasAlugada;
 
-    public Aluguel(DVD dvd, int diasAlugado) {
-        this.dvd = dvd;
-        this.diasAlugado = diasAlugado;
+    public Aluguel(Alugavel itemAlugado, int diasAlugada) {
+        this.itemAlugado = itemAlugado;
+        this.diasAlugada = diasAlugada;
     }
 
-    public DVD getDVD() {
-        return dvd;
+    public Alugavel getItemAlugado() {
+        return itemAlugado;
     }
 
-    public int getDiasAlugado() {
-        return diasAlugado;
+    public int getDiasAlugada() {
+        return diasAlugada;
     }
 
-    public double calcularValorDeAluguel() {
-        double valorTotal = 0.0;
-
-        switch (dvd.getCodigoDePreco()) {
-            case DVD.NORMAL:
-                valorTotal += 2.0;
-                if (diasAlugado > 2) {
-                    valorTotal += (diasAlugado - 2) * 1.5;
-                }
-                break;
-            case DVD.LANÇAMENTO:
-                valorTotal += diasAlugado * 3.00;
-                break;
-            case DVD.INFANTIL:
-                valorTotal += 1.5;
-                if (diasAlugado > 3) {
-                    valorTotal += (diasAlugado - 3) * 1.5;
-                }
-                break;
-        }
-
-        return valorTotal;
+    public double valorDeUmAluguel() {
+        return itemAlugado.getValorDoAluguel(diasAlugada);
     }
 
-    public int calcularPontosDeAlugadorFrequente() {
-        int pontos = 1;
-        if (dvd.getCodigoDePreco() == DVD.LANÇAMENTO && diasAlugado > 1) {
-            pontos++;
-        }
-        return pontos;
+    public int getPontosDeAlugadorFrequente() {
+        return itemAlugado.getPontosDeAlugadorFrequente(diasAlugada);
     }
 }
+
