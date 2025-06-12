@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt_BR" xmlns:th="www.thymeleaf.org">
+
+<head>
+    <meta th:insert="~{/fragments/head(titulo='Cadastro de Conta')}">
+</head>
+
+<body>
+    
+    <div th:replace="~{/fragments/cabecalho}"></div>
+
+    <div class="container">
+        <div th:if="${mensagem ne null}" th:text="${mensagem}" class="alert alert-success"></div>
+
+        <div class="card">
+            <div class="card-header">
+                Cadastro de Contas
+            </div>
+            <div class="card-body">
+                <form th:action="@{/contas}" method="POST" th:object="${conta}">
+                    <input type="hidden" th:field="*{id}" />
+
+                    <label for="numero">Número</label>
+                    <input type="text" th:field="*{numero}" class="form-control" /><br />
+
+                    <label for="correntista.id">Correntista</label>
+                    <select th:field="*{correntista.id}" class="form-select">
+                        <option th:each="cor : ${correntistaItems}" th:value="${cor.id}" th:label="${cor.nome}" />
+                    </select><br />
+
+                    <label for="lastName">Data</label>
+                    <input type="text" th:field="*{data}" class="form-control" /><br />
+
+
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <a class="btn btn-secondary" th:href="@{/contas}">Cancelar</a>
+                </form>
+</body>
+
+</html>
