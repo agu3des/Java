@@ -1,43 +1,40 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <title>Página Inicial da Aplicação</title>
 
     <meta th:insert="~{/fragments/head}">
-  </head>
+  </head> -->
 
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/principal}" 
+      th:with="titulo='Página Inicial da Aplicação'">
+  
   <body>
-    <div>
-      
-      <div th:replace="~{/fragments/cabecalho}"></div>
+    <div layout:fragment="conteudo">
+      <!-- <div th:replace="~{/fragments/cabecalho}"></div> -->
 
-      <div class="container">
-        <div class="card">
-          <div class="card-header">
-            <span>Bitbank</span>
-          </div>
-          <div class="card-body">
-            <p>Este é o Bitbank, o seu banco digital muito mais acessível.</p>
+      <div class="card-body">
+        <p>Este é o Bitbank, o seu banco digital muito mais acessível.</p>
 
-            <div>Como administrador, você poderá:</div>
-            <ul>
-              <li>
-                Adicionar ou consultar correntistas cadastrados use o menu
-                <strong>Correntistas</strong>
-              </li>
-              <li>
-                Adicionar ou consultar contas cadastradas use o menu
-                <strong>Contas</strong>
-              </li>
-            </ul>
-            <div>Como cliente, você poderá realizar operações na sua conta:</div>
-            <ul>
-              <li>Realizar créditos</li>
-              <li>Realizar pagamentos</li>
-            </ul>
-          </div>
-        </div>
+        <div>Como administrador, você poderá:</div>
+        <ul>
+          <li>
+            Adicionar ou consultar correntistas cadastrados use o menu
+            <strong>Correntistas</strong>
+          </li>
+          <li>
+            Adicionar ou consultar contas cadastradas use o menu
+            <strong>Contas</strong>
+          </li>
+        </ul>
+        <div>Como cliente, você poderá realizar operações na sua conta:</div>
+        <ul>
+          <li>Realizar créditos</li>
+          <li>Realizar pagamentos</li>
+        </ul>
       </div>
+
     </div>
   </body>
 </html>

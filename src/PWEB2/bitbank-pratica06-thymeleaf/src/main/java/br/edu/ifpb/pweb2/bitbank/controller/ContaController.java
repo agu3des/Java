@@ -104,4 +104,9 @@ public class ContaController {
         mav.setViewName("redirect:/contas");
         return mav;
     }
+
+    @ModelAttribute("menu")
+    public String selectMenu() {
+        return "conta";
+    }
 }

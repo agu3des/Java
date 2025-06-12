@@ -1,64 +1,57 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="pt_BR" xmlns:th="www.thymeleaf.org">
 
 <head>
     <meta th:insert="~{/fragments/head(titulo='Cadastro de Operações')}">    
-</head>
+</head> -->
 
-<body>
-    
-    <div th:replace="~{/fragments/cabecalho}"></div>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/principal}" 
+      th:with="titulo='Cadastro de Operações'">
+  
+  <body>
+    <div layout:fragment="conteudo">
+    <!-- <div th:replace="~{/fragments/cabecalho}"></div> -->
 
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                Operação em conta
-            </div>
-            <div class="card-body">
+        <div th:if="${conta == null}">
+            <form th:action="@{/contas/operacao}" method="POST">
+                <label for="nuConta">Número da conta</label>
+                <input type="text" id="nuConta" name="nuConta" class="form-control" /><br />
+                <button type="submit" class="btn btn-primary">Próximo</button>
+            </form>
+        </div>
 
-                <div th:if="${not #strings.isEmpty(mensagem)}" th:text="${mensagem}" class="alert alert-success"></div>
+        <div th:if="${conta != null}">
+            <ul>
+                <li>Conta:
+                    <span th:text="${conta.numero}"></span>
+                </li>
+                <li>Correntista:
+                    <span th:text="${conta.correntista.nome}"></span>
+                </li>
+                <li>Data abertura:
+                    <span th:text="${conta.data}"></span>
+                </li>
+            </ul>
 
-                <div th:if="${conta == null}">
-                    <form th:action="@{/contas/operacao}" method="POST">
-                        <label for="nuConta">Número da conta</label>
-                        <input type="text" id="nuConta" name="nuConta" class="form-control" /><br />
-                        <button type="submit" class="btn btn-primary">Próximo</button>
-                    </form>
-                </div>
+            <div style="margin-bottom: 30px;"></div>
 
-                <div th:if="${conta != null}">
-                    <ul>
-                        <li>Conta:
-                            <span th:text="${conta.numero}"></span>
-                        </li>
-                        <li>Correntista:
-                            <span th:text="${conta.correntista.nome}"></span>
-                        </li>
-                        <li>Data abertura:
-                            <span th:text="${conta.data}"></span>
-                        </li>
-                    </ul>
+            <h4>Informações da transação</h4>
+            <hr class="mb-4">
 
-                    <div style="margin-bottom: 30px;"></div>
+            <form action="operacao" method="POST" th:object="${transacao}">
+                <input type="hidden" th:field="*{id}" />
+                <input type="hidden" th:value="${conta.numero}" id="nuConta" name="nuConta" />
+                <label for="descricao">Descrição</label>
+                <input type="text" class="form-control" th:field="*{descricao}" /> <br />
 
-                    <h4>Informações da transação</h4>
-                    <hr class="mb-4">
+                <label for="data">Data</label>
+                <input type="text" class="form-control" th:field="*{data}" /> <br />
+                <label for="valor">Valor</label>
+                <input type="text" class="form-control" th:field="*{valor}" /><br />
 
-                    <form action="operacao" method="POST" th:object="${transacao}">
-                        <input type="hidden" th:field="*{id}" />
-                        <input type="hidden" th:value="${conta.numero}" id="nuConta" name="nuConta" />
-                        <label for="descricao">Descrição</label>
-                        <input type="text" class="form-control" th:field="*{descricao}" /> <br />
-
-                        <label for="data">Data</label>
-                        <input type="text" class="form-control" th:field="*{data}" /> <br />
-                        <label for="valor">Valor</label>
-                        <input type="text" class="form-control" th:field="*{valor}" /><br />
-
-                        <button type="submit" class="btn btn-primary">Realizar operação</button>
-                    </form>
-                </div>
-            </div>
+                <button type="submit" class="btn btn-primary">Realizar operação</button>
+            </form>
         </div>
     </div>
 </body>
