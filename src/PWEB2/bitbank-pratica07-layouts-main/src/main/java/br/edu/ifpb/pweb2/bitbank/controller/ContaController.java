@@ -1,0 +1,124 @@
+package br.edu.ifpb.pweb2.bitbank.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import br.edu.ifpb.pweb2.bitbank.model.Conta;
+import br.edu.ifpb.pweb2.bitbank.model.Correntista;
+import br.edu.ifpb.pweb2.bitbank.model.Transacao;
+import br.edu.ifpb.pweb2.bitbank.service.ContaService;
+import br.edu.ifpb.pweb2.bitbank.service.CorrentistaService;
+
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
+
+@Controller
+@RequestMapping("/contas")
+public class ContaController {
+
+    @Autowired
+    private ContaService contaService;
+
+    @Autowired
+    private CorrentistaService correntistaService;
+
+    @GetMapping("/form")
+    public ModelAndView getForm(ModelAndView model) {
+        model.setViewName("contas/form");
+        model.addObject("conta", new Conta(new Correntista()));
+        return model;
+    }
+
+    @ModelAttribute("correntistaItems")
+    public List<Correntista> getCorrentistas() {
+        return correntistaService.findAll();
+    }
+
+    @ModelAttribute("menu")
+    public String selectMenu() {
+        return "conta";
+    }
+
+    @PostMapping
+    public ModelAndView save(@Valid Conta conta, BindingResult result, ModelAndView model, RedirectAttributes attr) {
+        if (result.hasErrors()) {
+            model.setViewName("contas/form");
+            return model;
+        }
+        contaService.save(conta);
+        attr.addFlashAttribute("mensagem", "Conta inserida com sucesso!");
+        model.setViewName("redirect:/contas");
+        return model;
+    }
+
+    @GetMapping
+    public ModelAndView liste(ModelAndView model) {
+        model.setViewName("contas/list");
+        model.addObject("contas", contaService.findAll());
+        return model;
+    }
+
+    @GetMapping("/{id}")
+    public ModelAndView getCorrentistaById(@PathVariable(value = "id") Integer id, ModelAndView model) {
+        model.addObject("conta", contaService.findById(id));
+        model.setViewName("contas/form");
+        return model;
+    }
+
+    @GetMapping("/nuconta")
+    public ModelAndView getNuConta(ModelAndView mav) {
+        mav.addObject("menu", "operacao");
+        mav.setViewName("contas/operacao");
+        return mav;
+    }
+
+    @PostMapping(value = "/operacao")
+    public ModelAndView operacaoConta(String nuConta, Transacao transacao, ModelAndView mav) {
+        if (nuConta != null && transacao.getValor() == null) {
+            Conta conta = contaService.findByNumeroWithTransacoes(nuConta);
+            if (conta != null) {
+                mav.addObject("conta", conta);
+                mav.addObject("transacao", transacao);
+                mav.setViewName("contas/operacao");
+                mav.addObject("menu", "operacao");
+            } else {
+                mav.addObject("mensagem", "Conta inexistente!");
+                mav.setViewName("contas/operacao");
+            }
+        } else {
+            Conta conta = contaService.findByNumeroWithTransacoes(nuConta);
+            conta.addTransacao(transacao);
+            contaService.save(conta);
+            return addTransacaoConta(conta.getId(), mav);
+        }
+        mav.addObject("menu", "operacao");
+        return mav;
+    }
+    
+    @GetMapping(value = "/{id}/transacoes")
+    public ModelAndView addTransacaoConta(@PathVariable("id") Integer idConta, ModelAndView mav) {
+        Conta conta = contaService.findByIdWithTransacoes(idConta);
+        mav.addObject("conta", conta);
+        mav.addObject("menu", "operacao");
+        mav.setViewName("contas/transacoes");
+        return mav;
+    }
+
+    @GetMapping("/{id}/delete")
+    public ModelAndView deleteById(@PathVariable(value = "id") Integer id,
+            ModelAndView mav, RedirectAttributes attr) {
+        contaService.deleteById(id);
+        attr.addFlashAttribute("mensagem", "Conta removida com sucesso!");
+        mav.setViewName("redirect:/contas");
+        return mav;
+    }
+}

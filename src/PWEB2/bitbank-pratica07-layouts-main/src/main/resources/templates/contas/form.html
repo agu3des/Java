@@ -1,0 +1,31 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/principal}" th:with="titulo='Nova Conta'">
+  <body>
+    <div layout:fragment="conteudo">
+      <form th:action="@{/contas}" method="POST" th:object="${conta}">
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="numero">Número</label>
+          <input type="text" th:field="*{numero}" class="form-control" /><br />
+        <p th:if="${#fields.hasErrors('numero')}" th:errorclass="error" th:errors="*{numero}" class="alert alert-danger"/>
+        </div>
+
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="correntista.id">Correntista</label>
+          <select th:field="*{correntista.id}" class="form-select">
+            <option th:each="cor : ${correntistaItems}" th:value="${cor.id}" th:label="${cor.nome}" />
+          </select>
+        </div>
+
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="lastName">Data</label>
+          <input type="date" th:field="*{data}" th:attr="max=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" class="form-control" /><br />
+          <p th:if="${#fields.hasErrors('data')}" th:errors="*{data}" class="alert alert-danger"></p>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a class="btn btn-secondary" th:href="@{/contas}">Cancelar</a>
+      </form>
+    </div>
+  </body>
+</html>
