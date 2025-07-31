@@ -5,16 +5,19 @@
   <nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
     <div class="navbar-nav">
       <a th:classappend="${menu == 'home'} ? 'active'" class="nav-item nav-link" th:href="@{/home}">Home</a>
-      <a th:classappend="${menu == 'correntista'} ? 'active'"  class="nav-item nav-link" th:href="@{/correntistas}" th:if="${session.usuario != null and  session.usuario.admin}">Correntistas</a>
-      <a th:classappend="${menu == 'conta'} ? 'active'" class="nav-item nav-link" th:href="@{/contas}" th:if="${session.usuario != null and  session.usuario.admin}">Contas</a>
+      <a th:classappend="${menu == 'correntista'} ? 'active'"  class="nav-item nav-link" th:href="@{/correntistas}">Correntistas</a>
+      <a th:classappend="${menu == 'conta'} ? 'active'" class="nav-item nav-link" th:href="@{/contas}">Contas</a>
       <a th:classappend="${menu == 'operacao'} ? 'active'" class="nav-item nav-link" th:href="@{/contas/nuconta}">Operações</a>
     </div>
 
     <div style="margin-right: 5px">
-      <span th:if="${session.usuario != null}" th:text="${session.usuario.email}"></span>
-      <a th:href="@{/auth/logout}">
-        <button class="btn btn-outline-primary">Sair</button>
-      </a>
+      <form class="form-inline my-2 my-lg-0" th:action="@{/auth/logout}" method="POST">
+        <span sec:authorize="isAuthenticated()" sec:authentication="name" 
+        style="margin-right: 3px; font-size: 0.8em;"></span>
+        <button type="submit" class="btn btn-outline-success my-2 my-sm-0">
+        Sair
+        </button>
+      </form>
     </div>
   </nav>
 </div>

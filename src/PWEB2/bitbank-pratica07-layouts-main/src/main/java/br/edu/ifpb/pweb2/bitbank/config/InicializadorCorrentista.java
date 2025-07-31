@@ -21,7 +21,7 @@ public class InicializadorCorrentista implements ApplicationRunner {
             Correntista correntista = new Correntista();
             correntista.setNome("Administrador");
             correntista.setEmail("admin@bitbank.com");
-            correntista.setSenha(PasswordUtil.hashPassword("123")); 
+            // correntista.setSenha(PasswordUtil.hashPassword("123")); 
             correntista.setAdmin(true);
 
             correntistaRepository.save(correntista);

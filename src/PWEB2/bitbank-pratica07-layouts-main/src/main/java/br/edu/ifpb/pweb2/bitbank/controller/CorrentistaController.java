@@ -1,5 +1,7 @@
 package br.edu.ifpb.pweb2.bitbank.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,8 @@ import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
 
 import br.edu.ifpb.pweb2.bitbank.model.Correntista;
+import br.edu.ifpb.pweb2.bitbank.model.User;
+import br.edu.ifpb.pweb2.bitbank.repository.UserRepository;
 import br.edu.ifpb.pweb2.bitbank.service.CorrentistaService;
 
 @Controller
@@ -23,6 +27,7 @@ public class CorrentistaController {
 
     @Autowired
     private CorrentistaService correntistaService;
+
 
     @GetMapping("/form")
     public ModelAndView getForm(Correntista correntista, ModelAndView model) {
@@ -60,5 +65,10 @@ public class CorrentistaController {
     @ModelAttribute("menu")
     public String selectMenu() {
         return "correntista";
+    }
+
+    @ModelAttribute("users")
+    public List<User> getUserOptions() {
+        return correntistaService.findEnableUsers();
     }
 }

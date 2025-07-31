@@ -6,14 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.edu.ifpb.pweb2.bitbank.model.Correntista;
+import br.edu.ifpb.pweb2.bitbank.model.User;
 import br.edu.ifpb.pweb2.bitbank.repository.CorrentistaRepository;
-import br.edu.ifpb.pweb2.bitbank.util.PasswordUtil;
+import br.edu.ifpb.pweb2.bitbank.repository.UserRepository;
 
 @Component
 public class CorrentistaService implements Service<Correntista, Integer>{
 
     @Autowired
     private CorrentistaRepository correntistaRepository;
+    
+    @Autowired
+    private UserRepository userRepository;
+
 
     @Override
     public List<Correntista> findAll() {
@@ -27,8 +32,11 @@ public class CorrentistaService implements Service<Correntista, Integer>{
 
     @Override
     public Correntista save(Correntista c) {
-        c.setSenha(PasswordUtil.hashPassword(c.getSenha()));
        return correntistaRepository.save(c);
+    }
+
+    public List<User> findEnableUsers() {
+        return userRepository.findByEnabledTrue();
     }
     
 }

@@ -1,5 +1,6 @@
 body {
     font-family: Calibri !important;
+    font-size: 1.0em !important;
     padding-top: 3rem;
     display: -ms-flexbox;
     display: flex;
@@ -97,14 +98,12 @@ body {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-    margin-bottom: 10px;
 }
 
 .form-signin input[type="password"] {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    margin-bottom: 10px;
 }
 
 .autentique {

@@ -6,7 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Email;
@@ -33,9 +34,14 @@ public class Correntista implements Serializable {
     @Email(message = "Formato de email inválido")
     private String email;
 
-    @NotBlank(message="Campo obrigatório")
-    @Size(min = 5, max = 70, message = "A senha deve ter entre 5 e 70 caracteres")
-    private String senha;
+    // @NotBlank(message="Campo obrigatório")
+    // @Size(min = 5, max = 70, message = "A senha deve ter entre 5 e 70 caracteres")
+    // private String senha;
 
     private boolean admin;
+
+    @OneToOne
+    @JoinColumn(name = "username")
+    private User user;
+
 }

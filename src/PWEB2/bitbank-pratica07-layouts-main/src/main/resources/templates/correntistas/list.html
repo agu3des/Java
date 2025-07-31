@@ -28,7 +28,7 @@
                 <img th:if="${correntista.admin}" th:src="@{/imagens/admin.png}" />
                 <img th:unless="${correntista.admin}" th:src="@{imagens/naoadmin.png}" />
               </td>
-              <td th:text="${#strings.substring(correntista.senha,0,3)} + '...'"></td>
+              <td class="text-center" th:text="${correntista.user != null ? correntista.user.username : 'Sem usuário'}"></td>
             </tr>
           </tbody>
         </table>
