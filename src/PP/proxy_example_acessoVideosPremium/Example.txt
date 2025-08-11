@@ -1,0 +1,96 @@
+Certo, vou criar um exemplo no mesmo formato, mas desta vez usando o **padrão Proxy**.
+Vou manter a narrativa e detalhamento no estilo que você mostrou.
+
+---
+
+## I. Problema: Controle de Acesso a Vídeos Premium
+
+Fomos contratados para implementar um sistema de streaming que possui vídeos gratuitos e vídeos premium.
+O problema é que o carregamento de vídeos grandes e a verificação de permissões são processos custosos e devem ser feitos **apenas quando necessário**.
+
+Além disso, usuários sem assinatura premium não podem reproduzir vídeos premium, mas podem assistir aos gratuitos.
+
+A interface básica do sistema de reprodução de vídeos oferece 2 funcionalidades:
+
+* **playVideo(videoId)** → reproduz o vídeo correspondente.
+* **getVideoInfo(videoId)** → exibe informações sobre o vídeo, como título, duração e classificação.
+
+A aplicação é composta pelos seguintes elementos:
+
+* **VideoService**: serviço real responsável por carregar os vídeos do servidor.
+* **ProxyVideoService**: um intermediário que controla o acesso ao serviço real, realizando verificações de permissão antes de permitir a execução.
+* **Client**: módulo que interage com o Proxy sem saber se está lidando com o serviço real ou não.
+
+Requisitos:
+
+1. O serviço real só deve ser inicializado quando realmente for necessário carregar o vídeo.
+2. Usuários sem assinatura premium não devem conseguir reproduzir vídeos premium.
+3. A verificação de permissão deve ser transparente para o cliente.
+
+---
+
+### Exemplo de Cenário
+
+Usuário “Maria” acessa o sistema.
+
+* Ao solicitar **getVideoInfo(5)** (vídeo premium), a informação é carregada rapidamente, pois não é necessário inicializar o vídeo completo.
+* Ao solicitar **playVideo(5)**, o **ProxyVideoService** verifica se o usuário é premium:
+
+  * Se sim, inicializa o **VideoService** e carrega o vídeo.
+  * Se não, exibe mensagem “Acesso negado: este é um vídeo premium”.
+
+---
+
+### II. Tarefa
+
+Neste exercício, observe os seguintes pontos:
+
+1. A definição de como o padrão **Proxy** foi configurado para controlar o acesso e adiar o carregamento do vídeo.
+2. A estrutura de classes e a forma como o **Proxy** se comporta como substituto do serviço real.
+
+---
+
+### III. Diagrama de Classe
+
+```
++----------------+        +--------------------+
+|   VideoService |<-------| ProxyVideoService  |
++----------------+        +--------------------+
+| +playVideo()   |        | +playVideo()       |
+| +getVideoInfo()|        | +getVideoInfo()    |
++----------------+        | -realService       |
+                           | -userIsPremium     |
+                           +--------------------+
+                                   ^
+                                   |
+                           +----------------+
+                           |     Client     |
+                           +----------------+
+                           | -proxy         |
+                           | +execute()     |
+                           +----------------+
+```
+
+---
+
+### IV. Comportamento do Proxy
+
+**VideoService (Serviço Real)**
+
+* Possui toda a lógica de carregamento de vídeos e informações.
+* É pesado e custoso para inicializar.
+
+**ProxyVideoService (Proxy)**
+
+* Mantém referência para o serviço real.
+* Verifica se o usuário é premium antes de reproduzir vídeos restritos.
+* Só inicializa o **VideoService** quando necessário.
+
+**Client**
+
+* Interage apenas com o Proxy, sem saber se está lidando com ele ou com o serviço real.
+
+---
+
+Se quiser, posso já montar **o código exemplo completo** do Proxy de vídeos no mesmo formato de código Java que você usou nos outros padrões.
+Quer que eu faça isso?
