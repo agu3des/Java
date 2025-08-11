@@ -1,0 +1,7 @@
+/decorator/
+/ClienteDecorator.class
+/CompressionDecorator.class
+/DataSource.class
+/DataSourceDecorator.class
+/EncryptionDecorator.class
+/FileDataSource.class

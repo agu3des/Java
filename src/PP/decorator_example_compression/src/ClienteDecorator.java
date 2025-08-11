@@ -1,13 +1,9 @@
-import decorator.CompressionDecorator;
-import decorator.DataSource;
-import decorator.DataSourceDecorator;
-import decorator.EncryptionDecorator;
-import decorator.FileDataSource;
+package PP.decorator_example_compression.src;
 
 public class ClienteDecorator {
     
 	public static void main(String[] args) {
-		String fileName = "D:/temp/OutputDemoOriginal.txt";
+		String fileName = "C:/temp/OutputDemoOriginal.txt";
 		
         String salaryRecords = "Modelo,Preco\nOnix,82500\nCruze,151600\nEquinox,211890\nTracker,120990";
         

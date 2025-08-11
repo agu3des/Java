@@ -1,4 +1,4 @@
-package decorator;
+package PP.decorator_example_compression.src;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

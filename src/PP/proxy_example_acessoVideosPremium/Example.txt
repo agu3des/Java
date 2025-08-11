@@ -1,8 +1,3 @@
-Certo, vou criar um exemplo no mesmo formato, mas desta vez usando o **padrão Proxy**.
-Vou manter a narrativa e detalhamento no estilo que você mostrou.
-
----
-
 ## I. Problema: Controle de Acesso a Vídeos Premium
 
 Fomos contratados para implementar um sistema de streaming que possui vídeos gratuitos e vídeos premium.
@@ -90,7 +85,4 @@ Neste exercício, observe os seguintes pontos:
 
 * Interage apenas com o Proxy, sem saber se está lidando com ele ou com o serviço real.
 
----
 
-Se quiser, posso já montar **o código exemplo completo** do Proxy de vídeos no mesmo formato de código Java que você usou nos outros padrões.
-Quer que eu faça isso?

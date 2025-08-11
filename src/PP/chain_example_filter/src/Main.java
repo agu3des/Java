@@ -1,14 +1,14 @@
+package PP.chain_example_filter.src;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import middleware.Middleware;
 import middleware.RoleCheckMiddleware;
 import middleware.ThrottlingMiddleware;
 import middleware.UserExistsMiddleware;
 import server.Server;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * Demo class. Everything comes together here.

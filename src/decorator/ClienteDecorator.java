@@ -1,5 +1,11 @@
 package decorator;
 
+import PP.decorator_example_compression.src.CompressionDecorator;
+import PP.decorator_example_compression.src.DataSource;
+import PP.decorator_example_compression.src.DataSourceDecorator;
+import PP.decorator_example_compression.src.EncryptionDecorator;
+import PP.decorator_example_compression.src.FileDataSource;
+
 public class ClienteDecorator {
     public static void main(String[] args) {
     	String path = "D:/temp/";
